@@ -26,7 +26,7 @@ project-structure/
 #### ۱-۱  Dockerfile برای API (Backend)
 - از **multi-stage build** استفاده کنید
 - از **base imageهای رسمی و سبک** استفاده کنید
-- **best practiceهای امنیتی** (non-root user) را رعایت کنید
+- **best practiceهای امنیتی**  را رعایت کنید
 - فایل `Dockerfile` در مسیر `src/api/` ایجاد شود
 
 #### ۱-۲  Dockerfile برای UI (Frontend)
