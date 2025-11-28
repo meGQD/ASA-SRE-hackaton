@@ -19,6 +19,8 @@ deploy api:
         - "/src/api/**/*"
         - ".gitlab-ci.yml"
         - ".gitlab-ci/deploy.yml"
+  tags:
+    - deploy
 
 deploy ui:
   extends: .deploy_rules
@@ -32,3 +34,5 @@ deploy ui:
         - "/src/ui/**/*"
         - ".gitlab-ci.yml"
         - ".gitlab-ci/deploy.yml"
+  tags:
+    - deploy
