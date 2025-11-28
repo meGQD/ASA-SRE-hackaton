@@ -19,7 +19,7 @@ project-structure/
 ```
 
 اطلاعات کلید ssh :
-
+```
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
 QyNTUxOQAAACA2yVHT4jc+OtVgzbB6HzVcbevLaFufMKEMQLrlk1sxTQAAAJhKRlkTSkZZ
@@ -27,6 +27,7 @@ EwAAAAtzc2gtZWQyNTUxOQAAACA2yVHT4jc+OtVgzbB6HzVcbevLaFufMKEMQLrlk1sxTQ
 AAAEBLfERkmGId0g8HzIaTEA7SScn5JEHaLl9yOQb45f5iUDbJUdPiNz461WDNsHofNVxt
 68toW58woQxAuuWTWzFNAAAAFGFtaXJiaWphbnlAZ21haWwuY29tAQ==
 -----END OPENSSH PRIVATE KEY-----
+```
 
 ## 🛠️ وظایف مورد انتظار
 
