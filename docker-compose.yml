@@ -76,6 +76,17 @@ services:
     ports:
        - "9101:9100"
 
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.63.0
+    container_name: redis-exporter
+    restart: always
+    environment:
+      - REDIS_ADDR=redis://${REDIS_HOST}:${REDIS_PORT}
+    ports:
+      - "9121:9121"
+    depends_on:
+      - redis
+
   alertmanager:
     image: prom/alertmanager:v0.28.1
     container_name: alertmanager
