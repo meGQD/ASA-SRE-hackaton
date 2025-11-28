@@ -1,8 +1,8 @@
 stages:
   - build
-  # - deploy
+  - deploy
 
 
 include:
   - local: '/.gitlab-ci/build.yml'
-  # - local: '/.gitlab-ci/deploy.yml'
+  - local: '/.gitlab-ci/deploy.yml'
