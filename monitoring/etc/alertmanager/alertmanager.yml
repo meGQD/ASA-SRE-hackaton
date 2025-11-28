@@ -8,8 +8,9 @@ receivers:
   - name: 'blackhole'
 
 
-# inhibit_rules:
-#   - source_match:
-#       team: "Team SysAdmin"
-#     target_match:
-#       team: "Team Development"
+# if node-exporter is down, you won't be notified for redis being down
+inhibit_rules:
+  - source_match:
+      team: "Team SysAdmin"
+    target_match:
+      team: "Team Development"
