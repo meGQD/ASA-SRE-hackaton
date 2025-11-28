@@ -12,6 +12,8 @@ build api:
         - "/src/api/**/*"
         - ".gitlab-ci.yml"
         - ".gitlab-ci/build.yml"
+  tags:
+    - build
 
 build ui:
   extends: .build_rules
@@ -24,6 +26,8 @@ build ui:
         - "/src/ui/**/*"
         - ".gitlab-ci.yml"
         - ".gitlab-ci/build.yml"
+  tags:
+    - build
 
 
 
