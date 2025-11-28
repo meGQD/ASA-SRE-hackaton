@@ -51,7 +51,7 @@ services:
     restart: always
     volumes:
       - ./monitoring/etc/prometheus/:/etc/prometheus/
-      - ./monitoring/etc/prometheus/rules/:/etc/prometheus/rules/
+      - ./monitoring/etc/prometheus/rules/alerts.yml:/etc/prometheus/rules/alerts.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
