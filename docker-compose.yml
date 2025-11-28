@@ -45,5 +45,22 @@ services:
       - PGDATA=/var/lib/postgresql/data
       - POSTGRES_HOST_AUTH_METHOD: trust
 
+  prometheus:
+    image: prom/prometheus:v3.0.1
+    container_name: prometheus
+    restart: always
+    volumes:
+      - ./monitoring/etc/prometheus/:/etc/prometheus/
+      - ./monitoring/etc/prometheus/rules/:/etc/prometheus/rules/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.config.file=/etc/prometheus/web.yml'
+      - '--web.page-title=Prometheus'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9091:9090"
+
 volumes:
   postgres_data:
+  prometheus_data:
