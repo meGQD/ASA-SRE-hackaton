@@ -1,5 +1,5 @@
-# route:
-#   receiver: 'main_receiver'
+route:
+  receiver: 'main_receiver'
 
 # receivers:
 #   - name: 'main_receiver'
