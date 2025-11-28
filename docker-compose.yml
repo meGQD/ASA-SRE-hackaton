@@ -76,6 +76,17 @@ services:
     ports:
        - "9101:9100"
 
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    container_name: alertmanager
+    restart: always
+    volumes:
+      - ./monitoring/etc/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+    ports:
+      - "9095:9093"
+
 volumes:
   postgres_data:
   prometheus_data:

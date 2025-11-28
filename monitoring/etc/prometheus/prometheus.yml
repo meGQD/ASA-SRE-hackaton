@@ -18,15 +18,7 @@ scrape_configs:
 # rule_files:
 #   - "rules/alerts.yml"
 
-# alerting:
-#   alertmanagers:
-#     # - scheme: http
-#       # tls_config:
-#       #   ca_file: /etc/my.crt
-#       #   server_name: 'localhost'
-#       #   insecure_skip_verify: true
-#     - basic_auth:
-#         username: admin
-#         password: admin
-#       static_configs:
-#         - targets: ['alertmanager:9093']
+alerting:
+  alertmanagers:
+      static_configs:
+        - targets: ['alertmanager:9093']
