@@ -12,6 +12,7 @@ build api:
         - "/src/api/**/*"
         - ".gitlab-ci.yml"
         - ".gitlab-ci/build.yml"
+        - "docker-compose.yml"
   tags:
     - build
 
@@ -26,6 +27,7 @@ build ui:
         - "/src/ui/**/*"
         - ".gitlab-ci.yml"
         - ".gitlab-ci/build.yml"
+        - "docker-compose.yml"
   tags:
     - build
 
