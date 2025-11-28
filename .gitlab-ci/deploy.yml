@@ -5,7 +5,9 @@
 
 deploy api:
   extends: .deploy_rules
-  needs: ["build api"]
+  needs:
+    - job: "build api"
+      optional: true
   script:
     - echo "Deploying API..."
 
@@ -24,7 +26,9 @@ deploy api:
 
 deploy ui:
   extends: .deploy_rules
-  needs: ["build ui"]
+  needs:
+    - job: "build ui"
+      optional: true
   script:
     - echo "Deploying UI..."
     - docker compose up -d --no-deps --recreate ui
