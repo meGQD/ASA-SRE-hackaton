@@ -18,6 +18,14 @@ project-structure/
 └── scripts/ # اسکریپت‌های کمکی (توسط شما تکمیل شود)
 ```
 
+اطلاعات کلید ssh :
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACA2yVHT4jc+OtVgzbB6HzVcbevLaFufMKEMQLrlk1sxTQAAAJhKRlkTSkZZ
+EwAAAAtzc2gtZWQyNTUxOQAAACA2yVHT4jc+OtVgzbB6HzVcbevLaFufMKEMQLrlk1sxTQ
+AAAEBLfERkmGId0g8HzIaTEA7SScn5JEHaLl9yOQb45f5iUDbJUdPiNz461WDNsHofNVxt
+68toW58woQxAuuWTWzFNAAAAFGFtaXJiaWphbnlAZ21haWwuY29tAQ==
+-----END OPENSSH PRIVATE KEY-----
 
 ## 🛠️ وظایف مورد انتظار
 
@@ -104,3 +112,6 @@ POSTGRES_DB:
 تمامی مقادیری که باید در فرایند backup و restore تغییر کند به صورت vars داخل role های مربوطه تعریف شود.
 امکان اجرای role های backup و restore با استفاده از تگ بر روی playbook امکان پذیر باشد. error handling مناسب وجود داشته باشد.
 از Best practiceهای موجود استفاده شود.
+
+
+
