@@ -1,0 +1,31 @@
+.build_rules:
+  stage: build
+
+build api:
+  extends: .build_rules
+  script:
+    - echo "Building API Image..."
+    - docker build -t api:$CI_COMMIT_SHORT_SHA -f ./src/api/Dockerfile ./src/api
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+        - "/src/api/**/*"
+        - ".gitlab-ci.yml"
+        - ".gitlab-ci/build.yml"
+
+build ui:
+  extends: .build_rules
+  script:
+    - echo "Building UI Image..."
+    - docker build -t ui:$CI_COMMIT_SHORT_SHA -f ./src/ui/Dockerfile ./src/ui
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+        - "/src/ui/**/*"
+        - ".gitlab-ci.yml"
+        - ".gitlab-ci/build.yml"
+
+
+
+# before_script:
+#   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
