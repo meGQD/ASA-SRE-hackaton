@@ -1,0 +1,51 @@
+---
+- name: "Verify required variables are defined"
+  assert:
+    that:
+      - user_app is defined
+      - app_name is defined
+      - db_name is defined
+    fail_msg: "Required variables (user_app, app_name, db_name) must be defined in host_vars"
+
+- name: "Find latest backup if not specified"
+  shell: "ls -1td {{ backup_base_dir }}/{{ app_name }}/backups/*/ 2>/dev/null | head -n1 | xargs basename"
+  register: latest_backup
+  when: backup_file is not defined
+  changed_when: false
+  failed_when: false
+
+- name: "Check if any backups exist"
+  assert:
+    that:
+      - latest_backup.stdout != ""
+    fail_msg: "No backups found in {{ backup_base_dir }}/{{ app_name }}/backups/"
+  when: backup_file is not defined
+
+- name: "Set backup file to latest"
+  set_fact:
+    backup_file: "{{ latest_backup.stdout }}"
+  when: backup_file is not defined
+
+- name: "Verify backup file exists"
+  stat:
+    path: "{{ backup_base_dir }}/{{ app_name }}/backups/{{ backup_file }}/{{ db_name }}.dump.gz"
+  register: restore_file
+  failed_when: not restore_file.stat.exists
+
+- name: "Display restore information"
+  debug:
+    msg: "Restoring from: {{ backup_base_dir }}/{{ app_name }}/backups/{{ backup_file }}/{{ db_name }}.dump.gz ({{ restore_file.stat.size }} bytes)"
+
+- name: "Restore the database"
+  postgresql_db:
+    state: restore
+    name: "{{ db_name }}"
+    target: "{{ backup_base_dir }}/{{ app_name }}/backups/{{ backup_file }}/{{ db_name }}.dump.gz"
+  become: yes
+  become_user: postgres
+  register: restore_result
+  failed_when: restore_result is failed
+
+- name: "Display restore success message"
+  debug:
+    msg: "Database {{ db_name }} successfully restored from backup {{ backup_file }}"

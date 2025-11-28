@@ -1,0 +1,8 @@
+---
+# PostgreSQL backup configuration
+# Override these in host_vars or pass via --extra-vars
+
+user_app: postgres
+app_name: myapp
+db_name: mydb
+backup_base_dir: /var/lib

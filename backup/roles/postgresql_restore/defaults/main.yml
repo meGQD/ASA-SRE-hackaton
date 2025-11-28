@@ -1,0 +1,9 @@
+---
+# PostgreSQL restore configuration
+# Override these in host_vars or pass via --extra-vars
+
+user_app: postgres
+app_name: myapp
+db_name: mydb
+backup_base_dir: /var/lib
+# backup_file: ""  # Optional: specify timestamp to restore, otherwise uses latest

@@ -1,0 +1,41 @@
+---
+- name: "Verify required variables are defined"
+  assert:
+    that:
+      - user_app is defined
+      - app_name is defined
+      - db_name is defined
+    fail_msg: "Required variables (user_app, app_name, db_name) must be defined in host_vars"
+
+- name: "Set timestamp of the backup"
+  set_fact:
+    now: "{{ lookup('pipe', 'date +%F-%T') }}"
+
+- name: "Create a backup directory"
+  file:
+    path: "{{ backup_base_dir }}/{{ app_name }}/backups/{{ now }}/"
+    mode: 0777
+    owner: "{{ user_app }}"
+    state: directory
+  register: backup_dir_result
+  failed_when: backup_dir_result is failed
+
+- name: "Back up the database"
+  postgresql_db:
+    state: dump
+    name: "{{ db_name }}"
+    target: "{{ backup_base_dir }}/{{ app_name }}/backups/{{ now }}/{{ db_name }}.dump.gz"
+  become: yes
+  become_user: postgres
+  register: backup_result
+  failed_when: backup_result is failed
+
+- name: "Verify backup file was created"
+  stat:
+    path: "{{ backup_base_dir }}/{{ app_name }}/backups/{{ now }}/{{ db_name }}.dump.gz"
+  register: backup_file
+  failed_when: not backup_file.stat.exists or backup_file.stat.size == 0
+
+- name: "Display backup success message"
+  debug:
+    msg: "Backup completed: {{ backup_base_dir }}/{{ app_name }}/backups/{{ now }}/{{ db_name }}.dump.gz ({{ backup_file.stat.size }} bytes)"

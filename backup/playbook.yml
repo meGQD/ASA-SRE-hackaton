@@ -1,0 +1,16 @@
+---
+- hosts: postgresql
+  become: yes
+
+  tasks:
+    - name: "Backup PostgreSQL database"
+      include_role:
+        name: postgresql_backup
+      tags:
+        - backup
+
+    - name: "Restore PostgreSQL database"
+      include_role:
+        name: postgresql_restore
+      tags:
+        - restore
