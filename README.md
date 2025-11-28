@@ -28,13 +28,12 @@ project-structure/
 - از **base imageهای رسمی و سبک** استفاده کنید
 - **best practiceهای امنیتی**  را رعایت کنید
 - فایل `Dockerfile` در مسیر `src/api/` ایجاد شود
-- پورت api پورت ۸۰۹۰ است.
+- پورت api پورت 8080 است.
 
 #### ۱-۲  Dockerfile برای UI (Frontend)
 - از image رسمی `nginx:alpine` طوری استفاده کنید که فایلهای static را serve‌ کند.
 - فایل `Dockerfile` در مسیر `src/ui/` ایجاد شود
 - نکته ای که در این بخش وجود دارد این است که برای تغییر متغیرهای محیطی ui می توان از فایل config.js داخل مسیر ui استفاده کرد
-- پورت ui پورت ۸۰۸۰ است.
 
 #### ۱-۳  Docker Compose 
  بعد از آماده سازی docker file ها اقدام به ساخت docker compose کنید. همچنین نیاز است که redis و postgresql را نیز با کمک آن بالا بیاورید. 
