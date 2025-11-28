@@ -20,7 +20,7 @@ deploy api:
       changes:
         - "/src/api/**/*"
         - ".gitlab-ci.yml"
-        - ".gitlab-ci/deploy.yml"
+        - "pipelinesi/deploy.yml"
         - "docker-compose.yml"
   tags:
     - deploy
@@ -38,7 +38,7 @@ deploy ui:
       changes:
         - "/src/ui/**/*"
         - ".gitlab-ci.yml"
-        - ".gitlab-ci/deploy.yml"
+        - "pipelines/deploy.yml"
         - "docker-compose.yml"
   tags:
     - deploy

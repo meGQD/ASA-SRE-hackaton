@@ -4,5 +4,5 @@ stages:
 
 
 include:
-  - local: '/.gitlab-ci/build.yml'
-  - local: '/.gitlab-ci/deploy.yml'
+  - local: '/pipelines/build.yml'
+  - local: '/pipelines/deploy.yml'
