@@ -17,12 +17,12 @@ services:
       - redis
       - postgres
 
-  # ui:
-  #   build: ./src/ui
-  #   container_name: ui
-  #   restart: always
-  #   ports:
-  #     - "80:80"
+  ui:
+    build: ./src/ui
+    container_name: ui
+    restart: always
+    ports:
+      - "80:80"
 
   redis:
     image: redis:7-alpine3.21
@@ -45,7 +45,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - PGDATA=/var/lib/postgresql/data
-      # - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5432:5432"
 
