@@ -51,60 +51,60 @@ services:
     ports:
       - "5432:5432"
 
-  # prometheus:
-  #   image: prom/prometheus:v3.0.1
-  #   container_name: prometheus
-  #   restart: always
-  #   volumes:
-  #     - ./monitoring/etc/prometheus/:/etc/prometheus/
-  #     - ./monitoring/etc/prometheus/rules/alerts.yml:/etc/prometheus/rules/alerts.yml
-  #     - prometheus_data:/prometheus
-  #   command:
-  #     - '--config.file=/etc/prometheus/prometheus.yml'
-  #     - '--web.page-title=Prometheus'
-  #     - '--storage.tsdb.path=/prometheus'
-  #   ports:
-  #     - "9091:9090"
+  prometheus:
+    image: prom/prometheus:v3.0.1
+    container_name: prometheus
+    restart: always
+    volumes:
+      - ./monitoring/etc/prometheus/:/etc/prometheus/
+      - ./monitoring/etc/prometheus/rules/:/etc/prometheus/rules/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.page-title=Prometheus'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9090:9090"
 
-  # node-exporter:
-  #   image: prom/node-exporter:v1.8.2
-  #   container_name: node-exporter
-  #   restart: always
-  #   volumes:
-  #     - /proc:/host/proc:ro
-  #     - /sys:/host/sys:ro
-  #     - /:/rootfs:ro
-  #   command:
-  #     - '--path.procfs=/host/proc'
-  #     - '--path.rootfs=/rootfs'
-  #     - '--path.sysfs=/host/sys'
-  #     - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-  #   ports:
-  #      - "9101:9100"
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    container_name: node-exporter
+    restart: always
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+       - "9100:9100"
 
-  # redis-exporter:
-  #   image: oliver006/redis_exporter:v1.63.0
-  #   container_name: redis-exporter
-  #   restart: always
-  #   environment:
-  #     - REDIS_ADDR=redis://${REDIS_HOST}:${REDIS_PORT}
-  #   ports:
-  #     - "9121:9121"
-  #   depends_on:
-  #     - redis
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.63.0
+    container_name: redis-exporter
+    restart: always
+    environment:
+      - REDIS_ADDR=redis://${REDIS_HOST}:${REDIS_PORT}
+    ports:
+      - "9121:9121"
+    depends_on:
+      - redis
 
-  # alertmanager:
-  #   image: prom/alertmanager:v0.28.1
-  #   container_name: alertmanager
-  #   restart: always
-  #   volumes:
-  #     - ./monitoring/etc/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
-  #   command:
-  #     - '--config.file=/etc/alertmanager/alertmanager.yml'
-  #   ports:
-  #     - "9095:9093"
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    container_name: alertmanager
+    restart: always
+    volumes:
+      - ./monitoring/etc/alertmanager/:/etc/alertmanager/
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+    ports:
+      - "9093:9093"
 
 volumes:
   postgres_data:
-  # prometheus_data:
+  prometheus_data:
 

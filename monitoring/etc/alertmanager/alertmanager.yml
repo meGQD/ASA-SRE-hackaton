@@ -2,15 +2,15 @@ global:
   resolve_timeout: 5m
 
 route:
-  receiver: 'blackhole'
-  
-receivers:
-  - name: 'blackhole'
+  receiver: "blackhole"
 
+receivers:
+  - name: "blackhole"
 
 # if node-exporter is down, you won't be notified for redis being down
 inhibit_rules:
   - source_match:
-      team: "Team SysAdmin"
+      severity: critical
     target_match:
-      team: "Team Development"
+      severity: warning
+    equal: ["instance"]

@@ -1,20 +1,20 @@
 groups:
   - name: Alerts
     rules:
-    - alert: Is node exporter up
-      expr: up{job="node_exporter"} == 0
-      labels:
-        team: Team SysAdmin
-        severity: Critical
-      annotations:
-        summary: "{{ $labels.instance }} is down."
-        description: "Team SysAdmin has to restart the server {{ $labels.instance }} expr_VALUE: {{ $value }}"
+      - alert: Is node exporter up
+        expr: up{job="node_exporter"} == 0
+        labels:
+          team: Team SysAdmin
+          severity: critical
+        annotations:
+          summary: "{{ $labels.instance }} is down."
+          description: "Team SysAdmin has to restart the server {{ $labels.instance }} expr_VALUE: {{ $value }}"
 
-    - alert: Is redis up
-      expr: redis_up == 0
-      labels:
-        team: Team Development
-        severity: Critical
-      annotations:
-        summary: "{{ $labels.instance }} is down."
-        description: "Team Development has to restart the redis server expr_VALUE: {{ $value }}"
+      - alert: Is redis up
+        expr: redis_up == 0
+        labels:
+          team: Team Development
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} is down."
+          description: "Team Development has to restart the redis server expr_VALUE: {{ $value }}"
