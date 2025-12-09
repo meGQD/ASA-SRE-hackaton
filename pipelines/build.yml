@@ -9,10 +9,9 @@ build api:
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
-        - "/src/api/**/*"
+        - "src/api/**/*"
         - ".gitlab-ci.yml"
         - "pipelines/build.yml"
-        - "docker-compose.yml"
   tags:
     - build
 
@@ -24,11 +23,8 @@ build ui:
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
-        - "/src/ui/**/*"
+        - "src/ui/**/*"
         - ".gitlab-ci.yml"
         - "pipelines/build.yml"
-        - "docker-compose.yml"
   tags:
     - build
-
-

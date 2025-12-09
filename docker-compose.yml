@@ -1,6 +1,7 @@
 services:
   api:
     build: ./src/api
+    # image: api:${IMAGE_TAG}
     container_name: api
     restart: always
     ports:
@@ -19,6 +20,7 @@ services:
 
   ui:
     build: ./src/ui
+    # image: ui:${IMAGE_TAG}
     container_name: ui
     restart: always
     ports:

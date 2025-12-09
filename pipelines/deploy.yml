@@ -7,21 +7,20 @@ deploy api:
   extends: .deploy_rules
   needs:
     - job: "build api"
-      optional: true
+      # optional: true
   script:
     - echo "Deploying API..."
 
     - export DB_USER=$DB_USER
     - export DB_PASSWORD=$DB_PASSWORD
 
-    - docker compose up -d --no-deps --force-recreate
+    - docker compose up -d
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
-        - "/src/api/**/*"
+        - "src/api/**/*"
         - ".gitlab-ci.yml"
-        - "pipelinesi/deploy.yml"
-        - "docker-compose.yml"
+        - "pipelines/deploy.yml"
   tags:
     - deploy
 
@@ -29,18 +28,15 @@ deploy ui:
   extends: .deploy_rules
   needs:
     - job: "build ui"
-      optional: true
+      # optional: true
   script:
     - echo "Deploying UI..."
-    - docker compose up -d --no-deps --force-recreate
+    - docker compose up -d
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
-        - "/src/ui/**/*"
+        - "src/ui/**/*"
         - ".gitlab-ci.yml"
         - "pipelines/deploy.yml"
-        - "docker-compose.yml"
   tags:
     - deploy
-
-#
